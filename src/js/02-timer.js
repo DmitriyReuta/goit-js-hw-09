@@ -20,10 +20,16 @@ const options = {
       } else {
           startBtn.disabled = false;
           startBtn.addEventListener('click', () => {
-              const intervalId = setInterval(clearIntervalFoo, 1000);
+            const intervalId = setInterval(clearIntervalFoo, 1000);
+              if (intervalId) {
+                startBtn.disabled = true;
+                datetimePicker.disabled = true;
+              }
               function clearIntervalFoo() {
                   const currentTime = selected - new Date();
-             if (currentTime <= 0) {
+                if (currentTime <= 0) {
+               startBtn.disabled = false;
+                datetimePicker.disabled = false;
                  clearInterval(intervalId);
                  return
                   }
@@ -61,6 +67,7 @@ function convertMs(ms) {
 
   return { days, hours, minutes, seconds };
 }
+
 
 
 function addLeadingZero(value) {

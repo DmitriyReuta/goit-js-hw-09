@@ -19,9 +19,9 @@ function createPromise(position, delay) {
 }
 buttonSubmit.addEventListener('click', function (event) {
   event.preventDefault();
-  const delaySome = Number(inputDelay.value);
-  const stepSome = Number(inputStep.value);
-  const amountSome = Number(inputAmount.value);
+  let delaySome = Number(inputDelay.value);
+  let stepSome = Number(inputStep.value);
+  let amountSome = Number(inputAmount.value);
   let currentPosition = 1;
 
 
@@ -36,6 +36,7 @@ buttonSubmit.addEventListener('click', function (event) {
         console.log(`❌ Rejected promise ${error.position} in ${error.delay}ms`);
       })
       .finally(() => {
+        delaySome +=stepSome;
         currentPosition++;
         processPromise();
       });
